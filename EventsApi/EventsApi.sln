@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsApi", "EventsApi.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventTest", "..\EventTest\EventTest.csproj", "{02F19143-9097-48CB-89D6-F8D268152B62}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "EventApp", "..\EventApp\EventApp.esproj", "{B540DC9E-C647-2551-846E-53BA00FA4626}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "eventapp", "..\EventApp\eventapp.esproj", "{B540DC9E-C647-2551-846E-53BA00FA4626}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
