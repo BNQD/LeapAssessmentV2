@@ -3,3 +3,8 @@
 ################################################################################
 
 /EventsApi/.vs/EventsApi
+/EventApp/obj/Debug/eventapp.esproj.CoreCompileInputs.cache
+/EventApp/obj/Debug/eventapp.esproj.FileListAbsolute.txt
+/EventApp/obj/Debug/package.g.props
+/EventTests/bin/Debug/net8.0
+/EventTests/obj
