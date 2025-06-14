@@ -10,7 +10,7 @@ namespace EventTests
     {
         private Mock<IEventRepository> _mockEventRepository;
         private TicketService _ticketService;
-        private List<Event> _testEvents;
+        private List<EventSummaryDto> _testEvents;
 
         [SetUp]
         public void Setup()
@@ -18,23 +18,21 @@ namespace EventTests
             _mockEventRepository = new Mock<IEventRepository>();
             _ticketService = new TicketService(_mockEventRepository.Object);
 
-            _testEvents = new List<Event>
+            _testEvents = new List<EventSummaryDto>
             {
-                new Event
+                new EventSummaryDto
                 {
                     Id = "1",
                     Name = "Test Event 1",
-                    Location = "Location 1",
-                    StartsOn = DateTime.Now.AddDays(1),
-                    EndsOn = DateTime.Now.AddDays(2)
+                    TicketCount = 100,
+                    TotalSales = 50000
                 },
-                new Event
+                new EventSummaryDto
                 {
                     Id = "2",
                     Name = "Test Event 2",
-                    Location = "Location 2",
-                    StartsOn = DateTime.Now.AddDays(3),
-                    EndsOn = DateTime.Now.AddDays(4)
+                    TicketCount = 150,
+                    TotalSales = 75000
                 }
             };
         }

@@ -18,39 +18,54 @@ public class EventRepository : IEventRepository
     {
         return await _context.Events.ToListAsync();
     }
-    public async Task<List<Event>> GetTopFiveHighestSellingEventsAsync()
-    {
-        var query = _context.TicketSales
-            .GroupBy(x => x.EventId)
-            .Select(e => new
-            {
-                EventId = e.Key,
-                TotalSales = e.Sum(x => x.PriceInCents)
-            })
-            .OrderByDescending(x => x.TotalSales)
-            .Take(5);
 
-        var eventIds = await query.Select(x => x.EventId).ToListAsync();
+    public async Task<List<EventSummaryDto>> GetTopFiveHighestSellingEventsAsync()
+    {
         return await _context.Events
-            .Where(e => eventIds.Contains(e.Id))
+            .Join(
+                _context.TicketSales.GroupBy(x => x.EventId)
+                    .Select(g => new
+                    {
+                        EventId = g.Key,
+                        TotalSales = g.Sum(x => x.PriceInCents),
+                        TicketCount = g.Count()
+                    }),
+                e => e.Id,
+                s => s.EventId,
+                (e, s) => new EventSummaryDto
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    TotalSales = s.TotalSales,
+                    TicketCount = s.TicketCount
+                })
+            .OrderByDescending(x => x.TotalSales)
+            .Take(5)
             .ToListAsync();
     }
 
-    public async Task<List<Event>> GetTopFiveHighestCountEventsAsync()
+    public async Task<List<EventSummaryDto>> GetTopFiveHighestCountEventsAsync()
     {
-        var query = _context.TicketSales
-            .GroupBy(x => x.EventId)
-            .Select(e => new
-            {
-                EventId = e.Key,
-                TicketCount = e.Count()
-            })
-            .OrderByDescending(x => x.TicketCount)
-            .Take(5);
-
-        var eventIds = await query.Select(x => x.EventId).ToListAsync();
         return await _context.Events
-            .Where(e => eventIds.Contains(e.Id))
+            .Join(
+                _context.TicketSales.GroupBy(x => x.EventId)
+                    .Select(g => new
+                    {
+                        EventId = g.Key,
+                        TotalSales = g.Sum(x => x.PriceInCents),
+                        TicketCount = g.Count()
+                    }),
+                e => e.Id,
+                s => s.EventId,
+                (e, s) => new EventSummaryDto
+                {
+                    Id = e.Id,
+                    Name = e.Name,
+                    TotalSales = s.TotalSales,
+                    TicketCount = s.TicketCount
+                })
+            .OrderByDescending(x => x.TicketCount)
+            .Take(5)
             .ToListAsync();
     }
 }

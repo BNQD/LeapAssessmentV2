@@ -16,12 +16,12 @@ namespace EventsApi.Services
             _eventRepository = eventRepository;
         }
 
-        public async Task<List<Event>> GetTopFiveHighestSellingEventsAsync()
+        public async Task<List<EventSummaryDto>> GetTopFiveHighestSellingEventsAsync()
         {
             return await _eventRepository.GetTopFiveHighestSellingEventsAsync();
         }
 
-        public async Task<List<Event>> GetTopFiveHighestCountEventsAsync()
+        public async Task<List<EventSummaryDto>> GetTopFiveHighestCountEventsAsync()
         {
             return await _eventRepository.GetTopFiveHighestCountEventsAsync();
         }

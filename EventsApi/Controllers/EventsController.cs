@@ -25,13 +25,14 @@ namespace EventsApi.Controllers
             return events;
         }
         [HttpGet("GetTopFiveHighestSellingEvents")]
-        public async Task<IEnumerable<Event>> GetTopFiveHighestSellingEvents()
+        public async Task<IEnumerable<EventSummaryDto>> GetTopFiveHighestSellingEvents()
         {
             var events = await _ticketService.GetTopFiveHighestSellingEventsAsync();
             return events;
         }
+
         [HttpGet("GetTopFiveHighestCountEvents")]
-        public async Task<IEnumerable<Event>> GetTopFiveHighestCountEvents()
+        public async Task<IEnumerable<EventSummaryDto>> GetTopFiveHighestCountEvents()
         {
             var events = await _ticketService.GetTopFiveHighestCountEventsAsync();
             return events;

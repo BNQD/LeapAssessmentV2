@@ -5,7 +5,7 @@ namespace EventsApi.Services
 {
     public interface ITicketService
     {
-        public Task<List<Event>> GetTopFiveHighestSellingEventsAsync();
-        public Task<List<Event>> GetTopFiveHighestCountEventsAsync();
+        Task<List<EventSummaryDto>> GetTopFiveHighestSellingEventsAsync();
+        Task<List<EventSummaryDto>> GetTopFiveHighestCountEventsAsync();
     }
 }
